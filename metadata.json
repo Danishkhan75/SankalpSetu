@@ -1,0 +1,6 @@
+{
+  "name": "SankalpSetu — NGO Donation & Fundraising Platform",
+  "description": "Verified NGO fundraising platform with transparent goal tracking, 3-step accessible donations, HMAC-verified payment webhooks, 80G tax receipts, and role-based dashboards backed by PostgreSQL.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

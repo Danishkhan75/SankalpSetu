@@ -1,0 +1,14 @@
+node_modules/
+build/
+dist/
+.next/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+/.aistudio/
+/.gmp_cache/
+/data/sankalpsetu-persistent-db.json
+/firebase-applet-config.json
+/tsconfig.tsbuildinfo

@@ -188,6 +188,8 @@ npm install
 # 2. Configure environment variables (.env)
 cp .env.example .env
 # Configure server secrets in .env (never expose them as VITE_* variables).
+# Set VITE_FIREBASE_* web settings and VITE_GOOGLE_CLIENT_ID from your Firebase project.
+# For Firebase Admin, use Application Default Credentials and optionally FIREBASE_PROJECT_ID.
 
 # 3. Existing integrated Express + Vite server (legacy backend and WebSocket)
 npm run dev
@@ -209,6 +211,9 @@ npm run build
 `npm run backend:build` builds Next.js and `npm run backend:start` starts it. Before
 production use, set unique `JWT_SECRET`, `ADMIN_LOGIN_PASSWORD`, and
 `PAYMENT_WEBHOOK_SECRET` values; set AI/provider keys only in the server environment.
+Firebase web settings are loaded from `VITE_FIREBASE_*` variables, while the Admin SDK
+uses Application Default Credentials (and optional `FIREBASE_PROJECT_ID`). Keep the
+local `firebase-applet-config.json` and runtime database snapshot out of Git.
 Previously embedded credentials were removed: rotate any credentials that may have been
 exposed, and expect existing JWT cookies to require re-authentication after `JWT_SECRET`
 changes.
