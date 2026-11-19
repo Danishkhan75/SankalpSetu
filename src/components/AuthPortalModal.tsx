@@ -112,7 +112,7 @@ export const AuthPortalModal: React.FC<AuthPortalModalProps> = ({
   // Handle Firebase redirect result if a redirect flow was triggered
   useEffect(() => {
     let mounted = true;
-    getRedirectResult(auth)
+    (auth ? getRedirectResult(auth) : Promise.resolve(null))
       .then(async (result) => {
         if (result && result.user && mounted) {
           const fbUser = result.user;
@@ -304,6 +304,10 @@ export const AuthPortalModal: React.FC<AuthPortalModalProps> = ({
   ) => {
     setError(null);
     setSuccessMessage(null);
+    if (!auth) {
+      setError('Firebase web configuration is not set. Configure VITE_FIREBASE_* variables to use social login.');
+      return;
+    }
 
     if (selectedRole === 'admin' && provider !== 'google') {
       setError(
@@ -457,6 +461,7 @@ export const AuthPortalModal: React.FC<AuthPortalModalProps> = ({
       let firebaseUid: string | undefined;
       if (selectedRole !== 'admin') {
         try {
+          if (!auth) throw new Error('Firebase is not configured');
           if (mode === 'signup') {
             const cred = await createUserWithEmailAndPassword(
               auth,
@@ -534,7 +539,7 @@ export const AuthPortalModal: React.FC<AuthPortalModalProps> = ({
 
   const handleSignOutClick = async () => {
     try {
-      await firebaseSignOut(auth);
+      if (auth) await firebaseSignOut(auth);
     } catch {
       // ignore
     }

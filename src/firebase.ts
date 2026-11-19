@@ -26,15 +26,16 @@ export const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || '',
 };
 
-if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {
-  throw new Error('Set the VITE_FIREBASE_* web configuration before using Firebase.');
-}
-
-export const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
+export const app =
+  firebaseConfig.apiKey && firebaseConfig.projectId
+    ? getApps().length === 0
+      ? initializeApp(firebaseConfig)
+      : getApp()
+    : null;
 
 // Initialize Analytics safely in browser environments
 export let analytics: Analytics | null = null;
-if (typeof window !== 'undefined') {
+if (typeof window !== 'undefined' && app) {
   isAnalyticsSupported()
     .then((supported) => {
       if (supported) {
@@ -47,7 +48,7 @@ if (typeof window !== 'undefined') {
 }
 
 // Initialize Firebase Authentication and Providers
-export const auth = getAuth(app);
+export const auth = app ? getAuth(app) : null;
 
 export const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({

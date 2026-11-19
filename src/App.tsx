@@ -488,16 +488,16 @@ export default function App() {
       {/* Top Responsive Liquid Glass Navigation Bar (Clean across Mobile, iPad/Tablet, and Desktop) */}
       <header className="sticky top-0 z-40 liquid-glass border-b border-stone-200/80 dark:border-slate-800/80 w-full transition-colors">
         <div className="max-w-[1360px] mx-auto px-3 sm:px-6 lg:px-8 h-20 sm:h-24 flex items-center justify-between gap-2 sm:gap-3 w-full">
-          {/* Official SankalpSetu Brand Logo — Enlarged Red & Blue Inner Emblem Without Outer Border */}
+          {/* Official SankalpSetu Brand Logo */}
           <a href="#top" className="flex items-center gap-2 sm:gap-2.5 min-w-0 flex-1 lg:flex-initial lg:shrink-0">
             <div
               data-testid="navbar-brand-logo"
-              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden bg-white/95 dark:bg-white/90 flex items-center justify-center shrink-0 ring-1 ring-stone-200/70 dark:ring-slate-700/80 p-0 shadow-xs"
+              className="group w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden bg-white/95 dark:bg-white/90 flex items-center justify-center shrink-0 ring-1 ring-stone-200/70 dark:ring-slate-700/80 p-0 shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:scale-105 hover:shadow-lg hover:ring-emerald-500/60"
             >
               <img
                 src="/assets/aistudio/SankalpSetu_d7769182.png"
                 alt="SankalpSetu Official Logo"
-                className="w-full h-full object-cover object-center scale-[2.38] transform-gpu"
+                className="w-full h-full object-contain scale-[1.45] transition-transform duration-300 group-hover:scale-[1.55]"
               />
             </div>
             <div className="min-w-0 lg:shrink-0">
@@ -782,15 +782,15 @@ export default function App() {
                 </p>
 
                 {/* Owner & Verification Liquid Glass Banner */}
-                <div className="p-3.5 rounded-xl glass-card liquid-sheen text-xs space-y-1">
-                  <div className="flex items-center justify-between text-stone-700 dark:text-slate-300">
+                <div className="w-full p-3.5 rounded-xl glass-card liquid-sheen text-xs space-y-2">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 text-stone-700 dark:text-slate-300">
                     <span className="font-semibold flex items-center gap-1.5">
                       <FileCheck2 className="w-4 h-4 text-[#1F6F5B] dark:text-emerald-400 shrink-0" />
                       Platform Owner & Chief Verifier:
                     </span>
                     <strong className="text-stone-900 dark:text-white">Danish Khan</strong>
                   </div>
-                  <div className="flex flex-wrap items-center justify-between gap-1 text-stone-500 dark:text-slate-400 font-mono text-[11px]">
+                  <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:justify-between gap-1 text-stone-500 dark:text-slate-400 font-mono text-[11px]">
                     <span>khandanish0503@gmail.com</span>
                     <span className="text-emerald-800 dark:text-emerald-400 font-semibold">
                       Official Government Identity Verified
@@ -1887,11 +1887,11 @@ export default function App() {
             {/* Column 1: Brand & Mission */}
             <div className="space-y-3">
               <div className="flex items-center gap-2.5 text-white">
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden bg-white/95 flex items-center justify-center shrink-0 ring-1 ring-stone-700 p-0 shadow-xs">
+                <div className="group w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden bg-white/95 flex items-center justify-center shrink-0 ring-1 ring-stone-700 p-0 shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:scale-105 hover:shadow-lg hover:ring-emerald-500/60">
                   <img
                     src="/assets/aistudio/SankalpSetu_d7769182.png"
                     alt="SankalpSetu Official Logo"
-                    className="w-full h-full object-cover object-center scale-[2.38] transform-gpu"
+                    className="w-full h-full object-contain scale-[1.45] transition-transform duration-300 group-hover:scale-[1.55]"
                   />
                 </div>
                 <div>

@@ -17,12 +17,10 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || '',
 };
 
-if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {
-  throw new Error('Set the VITE_FIREBASE_* web configuration before using Firebase.');
-}
-
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+const hasFirebaseConfig =
+  Boolean(firebaseConfig.apiKey) && Boolean(firebaseConfig.projectId);
+const app = hasFirebaseConfig ? initializeApp(firebaseConfig) : null;
+export const auth = app ? getAuth(app) : null;
 export const googleAuthProvider = new GoogleAuthProvider();
 googleAuthProvider.addScope('https://www.googleapis.com/auth/gmail.send');
 
@@ -37,6 +35,10 @@ export const initFirebaseAuth = (
   onAuthSuccess?: (user: User, token: string) => void,
   onAuthFailure?: () => void
 ) => {
+  if (!auth) {
+    onAuthFailure?.();
+    return () => {};
+  }
   return onAuthStateChanged(auth, async (user: User | null) => {
     if (user) {
       if (cachedGoogleAccessToken) {
@@ -59,6 +61,9 @@ export const googleSignInWithGmailScope = async (): Promise<{
   displayName?: string | null;
   accessToken: string;
 } | null> => {
+  if (!auth) {
+    throw new Error('Firebase web configuration is not set.');
+  }
   try {
     isSigningIn = true;
     const gsiWindow = window as any;
@@ -138,7 +143,7 @@ export const setCachedGoogleAccessToken = (token: string | null) => {
 
 export const firebaseLogout = async () => {
   try {
-    await auth.signOut();
+    await auth?.signOut();
   } finally {
     cachedGoogleAccessToken = null;
   }

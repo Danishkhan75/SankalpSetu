@@ -127,6 +127,73 @@
     }
   }
 
+  @media screen and (max-width: 1024px) {
+    #panel-workspace,
+    #admin-hero-manager,
+    #admin-audit-log {
+      width: 100%;
+      min-width: 0;
+    }
+
+    #panel-workspace .grid,
+    #panel-workspace .flex,
+    #admin-hero-manager .grid,
+    #admin-audit-log .grid {
+      min-width: 0;
+    }
+
+    #panel-workspace button,
+    #panel-workspace input,
+    #panel-workspace textarea,
+    #admin-hero-manager button,
+    #admin-hero-manager input,
+    #admin-audit-log button {
+      max-width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 1025px) {
+    #panel-workspace {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    #panel-workspace > section {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    #panel-workspace #admin-hero-manager,
+    #panel-workspace #admin-audit-log {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+    }
+
+    #panel-workspace #admin-hero-manager > div,
+    #panel-workspace #admin-audit-log > div {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+    }
+
+    #panel-workspace #admin-hero-manager .grid,
+    #panel-workspace #admin-audit-log .grid {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    #panel-workspace #admin-hero-manager .grid > *,
+    #panel-workspace #admin-audit-log .grid > * {
+      min-width: 0;
+    }
+
+    #footer-faq-heading,
+    #footer-faq-heading ~ p {
+      max-width: 100%;
+    }
+  }
+
   @media screen and (min-width: 641px) and (max-width: 1024px) {
     .responsive-shell {
       padding-left: clamp(1.5rem, 3.2vw, 2rem) !important;

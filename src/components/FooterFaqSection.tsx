@@ -3,7 +3,11 @@ import { ChevronDown, HelpCircle, Lock, Receipt, ShieldCheck } from 'lucide-reac
 
 interface FaqItem {
   id: string;
-  category: 'Return & Support Categories' | 'Payment Verification' | 'Identity & Vetting';
+  category:
+    | 'Return & Support Categories'
+    | 'Payment Verification'
+    | 'Identity & Vetting'
+    | 'Account & General';
   question: string;
   answer: string;
   referenceNote: string;
@@ -58,9 +62,103 @@ const FAQ_ITEMS: FaqItem[] = [
       '100% of your contribution is tracked in the live PostgreSQL ledger and verified by Platform Administrator Danish Khan (khandanish0503@gmail.com). Every campaign displays its verified Government Identity badge, beneficiary location, and real-time disbursement progress.',
     referenceNote: '100% Direct Escrow Tracking · Admin Audit Log Transparency',
   },
+  {
+    id: 'faq-how-to-create-campaign',
+    category: 'Account & General',
+    question: 'How do I start a fundraiser or submit a quick aid request?',
+    answer:
+      'Create or log in to your account, choose the applicable category, enter the beneficiary and request details, upload a valid Government Identity document, and submit the campaign form. Quick Aid requests require the same Government Identity KYC process as a full campaign. The platform owner may approve or return a request after verification.',
+    referenceNote: 'Mandatory KYC · Admin Review · Category & Amount Details',
+  },
+  {
+    id: 'faq-who-can-donate',
+    category: 'Account & General',
+    question: 'Who can contribute to a campaign?',
+    answer:
+      'Anyone using the platform can browse verified campaigns and choose to donate. Donors may provide PAN details for receipts where applicable and can use anonymous donation options when available. Fraudulent or duplicate transactions may be cancelled after verification.',
+    referenceNote: 'Open Donor Access · Receipt & Privacy Controls',
+  },
+  {
+    id: 'faq-campaign-verification-time',
+    category: 'Identity & Vetting',
+    question: 'How long does campaign or NGO verification take?',
+    answer:
+      'Verification time depends on the completeness and authenticity of the submitted documents. The applicant should upload clear, readable files and provide an accurate registration number. A Pending status remains until the platform administrator completes the review.',
+    referenceNote: 'Document Quality · Registration Check · Pending Review Status',
+  },
+  {
+    id: 'faq-document-privacy',
+    category: 'Identity & Vetting',
+    question: 'Is my Aadhaar, PAN, or other identity document public?',
+    answer:
+      'Sensitive identity numbers are masked or stored only for verification and compliance purposes. Public campaign pages should display verification status, not the complete identity number. You should still avoid uploading photocopied documents containing unnecessary personal details.',
+    referenceNote: 'Privacy Masking · Limited Verification Access',
+  },
+  {
+    id: 'faq-80g-tax-benefit',
+    category: 'Payment Verification',
+    question: 'Can every donation receive an 80G tax receipt?',
+    answer:
+      'No. A tax benefit depends on the receiving NGO or organization having valid 80G eligibility and the campaign being covered under that approval. The receipt shows the applicable statutory and organizational details; it is not a guarantee of tax deductibility. Donors should consult a tax professional.',
+    referenceNote: 'Verified 80G Status · Campaign Eligibility · Professional Tax Advice',
+  },
+  {
+    id: 'faq-refund-policy',
+    category: 'Payment Verification',
+    question: 'Can I request a refund after donating?',
+    answer:
+      'Refund eligibility depends on the campaign status, payment-provider status, and applicable refund policy. Duplicate, failed, or incorrectly processed payments are the strongest refund cases. Approved refunds are processed through the original payment channel and may take additional processing time.',
+    referenceNote: 'Refund Authorization · Original Payment Channel · Processing Time',
+  },
+  {
+    id: 'faq-donation-status',
+    category: 'Payment Verification',
+    question: 'Why is my donation showing as pending or failed?',
+    answer:
+      'A pending status means the payment provider or verification webhook has not yet confirmed the transaction. A failed status indicates authorization or processing did not complete. Do not retry repeatedly until the first payment status is confirmed; a duplicate or pending payment should be checked before making another contribution.',
+    referenceNote: 'Payment Status Reconciliation · Webhook Confirmation',
+  },
+  {
+    id: 'faq-blood-donation',
+    category: 'Account & General',
+    question: 'How does the blood donation and hospital support feature work?',
+    answer:
+      'Users can register a blood donation request or pledge, choose the required blood group, and view nearby hospitals or blood-support options. This feature does not replace emergency services or a medical professional’s assessment. For immediate danger, contact the local emergency number and a nearby hospital directly.',
+    referenceNote: 'Blood Group Request · Nearby Hospital Support · Emergency Safety',
+  },
+  {
+    id: 'faq-doctor-consultation',
+    category: 'Identity & Vetting',
+    question: 'Are doctors listed on SankalpSetu medically verified?',
+    answer:
+      'Listed doctors and their registration details may be checked against available medical council records and verified by the platform administrator. Verification status can change, and a listing is not a substitute for clinical judgment or an emergency medical response.',
+    referenceNote: 'Registration Review · NMC or State Council Check · Listing Status',
+  },
+  {
+    id: 'faq-account-security',
+    category: 'Account & General',
+    question: 'How can I keep my SankalpSetu account secure?',
+    answer:
+      'Use a strong unique password, keep your email and login details private, avoid public devices, and sign out after use. Never share OTPs, payment PINs, password-reset links, or Government Identity document PINs with anyone claiming to represent the platform.',
+    referenceNote: 'Strong Password · Secure Sign-Out · OTP and PIN Protection',
+  },
+  {
+    id: 'faq-update-delete-data',
+    category: 'Account & General',
+    question: 'Can I update or remove incorrect account or campaign information?',
+    answer:
+      'Authorized users can request profile or campaign corrections through the platform. Requests involving campaigns, NGO records, verification documents, donations, or audit records may require additional approval for compliance and traceability.',
+    referenceNote: 'Role-Based Editing · Verification Review · Audit Traceability',
+  },
 ];
 
-const CATEGORIES = ['All Topics', 'Return & Support Categories', 'Payment Verification', 'Identity & Vetting'] as const;
+const CATEGORIES = [
+  'All Topics',
+  'Return & Support Categories',
+  'Payment Verification',
+  'Identity & Vetting',
+  'Account & General',
+] as const;
 
 export const FooterFaqSection: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<(typeof CATEGORIES)[number]>('All Topics');
@@ -116,7 +214,7 @@ export const FooterFaqSection: React.FC = () => {
         </div>
 
         {/* Interactive Topic Filter & Expand/Collapse All */}
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex w-full lg:w-auto flex-wrap items-center justify-start lg:justify-end gap-2">
           <div
             className="flex flex-wrap items-center gap-1 p-1 rounded-xl bg-black/25 border border-white/15"
             role="group"

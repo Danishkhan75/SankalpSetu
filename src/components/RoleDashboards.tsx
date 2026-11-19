@@ -3815,8 +3815,8 @@ export const RoleDashboards: React.FC<RoleDashboardsProps> = ({
   return (
     <section className="py-10 border-t border-stone-200/80 dark:border-slate-800">
       <div className="max-w-[1360px] mx-auto responsive-shell space-y-8">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 bg-stone-900 dark:bg-slate-900 text-white p-5 sm:p-6 rounded-2xl border border-stone-700/80 shadow-xl">
-          <div>
+        <div className="w-full min-w-0 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(360px,auto)] items-end gap-4 bg-stone-900 dark:bg-slate-900 text-white p-5 sm:p-6 rounded-2xl border border-stone-700/80 shadow-xl">
+          <div className="min-w-0">
             <span className="text-xs font-bold uppercase tracking-widest text-amber-400 flex items-center gap-1.5 mb-1">
               <ShieldAlert className="w-4 h-4" /> Panel 1 · Master Admin Full Control Center (Dynamic Data, Photos & Hero Section)
             </span>
@@ -3831,7 +3831,7 @@ export const RoleDashboards: React.FC<RoleDashboardsProps> = ({
               · Directly update or delete any Hero Section photo, Campaign photo, NGO, Doctor, or Donation record in real time.
             </p>
           </div>
-          <div className="flex flex-wrap items-center gap-2.5 text-xs font-mono tabular-nums">
+          <div className="flex w-full lg:w-auto flex-wrap items-center gap-2.5 text-xs font-mono tabular-nums">
             {organizations.length > 0 && (
               <button
                 type="button"
